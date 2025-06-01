@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  background-size: 600% 600%;
+  animation: neonBg 20s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  color: #00f0ff;
+  overflow: hidden;
+}
+
+@keyframes neonBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  text-align: center;
+  animation: flicker 2s infinite alternate;
+}
+
+h1 {
+  font-size: 2.8em;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  gap: 18px;
+  margin: 30px auto;
+}
+
+.cell {
+  width: 120px;
+  height: 120px;
+  border-radius: 15px;
+  background-color: rgba(20, 20, 20, 0.9);
+  box-shadow: 0 0 25px #0ff, inset 0 0 10px #00f0ff;
+  font-size: 2.5em;
+  color: #00f0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cell:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px #0ff, inset 0 0 15px #00f0ff;
+  background: radial-gradient(circle, #112 30%, #0ff55f22);
+}
+
+.cell::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+  background: radial-gradient(circle at center, #00f0ff44, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cell:active::after {
+  opacity: 1;
+  animation: ripple 0.5s ease;
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.cell.X {
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080, 0 0 20px #ff00c8;
+  animation: glow 1.5s infinite alternate;
+}
+
+.cell.O {
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #0ff;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px; }
+  to { text-shadow: 0 0 20px, 0 0 40px; }
+}
+
+#status {
+  font-size: 1.8em;
+  color: #0ff;
+  margin-top: 20px;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  background: #00f0ff;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00f0ff, 0 0 10px #0ff inset;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+button:hover {
+  background: #00d1e2;
+  box-shadow: 0 0 30px #00d1e2, 0 0 20px #0ff inset;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.92; }
+  100% { opacity: 1; }
+}
+
